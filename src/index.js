@@ -1,12 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Route, BrowserRouter as Router, Switch} from 'react-router-dom';
+import {Route, BrowserRouter as Router, Switch, Redirect} from 'react-router-dom';
 import './index.css';
 import App from './pages/Home/App';
 import * as serviceWorker from './serviceWorker';
 import TiposEventos from './pages/TiposEventos/TiposEventos';
 import NaoEncontrada from './pages/NaoEncontrada/NaoEncontrada';
+import Login from './pages/Login/login';
+import {usuarioAutenticado} from './services/autenticacao'
 
+//Criando permissão                      Resto das minhas propriedades
+const Permissao = ( {component : Component}, {...rest} ) => (
+    <Route
+      {...rest}
+      render = {props => usuarioAutenticado() ?
+        //Verificando o usuario ou redirecionando 
+    (<Component {...props} /> ) :
+     (<Redirect to={ { pathname : "/login" } } />)
+      } 
+      />
+);
 //Criando as rotas
 const rotas = (
     <Router>
@@ -14,7 +27,8 @@ const rotas = (
             <Switch>
             {/* Quando for exatamente barra ele mudar o caminho. */}
            <Route exact path="/" component={App} /> 
-           <Route path="/tiposeventos" component={TiposEventos}></Route>
+           <Permissao path="/tiposeventos" component={TiposEventos}></Permissao>
+           <Route path="/login" component={Login}></Route>
            <Route component={NaoEncontrada}/>
            </Switch>
         </div>

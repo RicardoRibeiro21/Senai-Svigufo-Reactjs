@@ -1,12 +1,10 @@
 import React, {Component} from "react"
-
-import logo from "../../assets/img/icon-login.png"; 
-
 import '../../assets/css/flexbox.css';
 import '../../assets/css/reset.css';
 import '../../assets/css/login.css';
 import '../../assets/css/style.css';
 
+import Titulo from '../../Components/Titulo'
 
 
 class TiposEventos extends Component{
@@ -16,7 +14,8 @@ class TiposEventos extends Component{
     //Estado do nosso componente, definimos nossos objetos dentro deste método
     this.state = {
       lista: [],
-      nome: ""
+      nome: "",
+      tituloPagina : "Lista Tipos de Eventos"
   }
   //Quando ocorrer um evento, da um bind no método, assim ele atualiza o que está no contexto.
   this.atualizaEstadoNome = this.atualizaEstadoNome.bind(this);
@@ -71,7 +70,7 @@ class TiposEventos extends Component{
         
             <main className="conteudoPrincipal">
               <section className="conteudoPrincipal-cadastro">
-                <h1 className="conteudoPrincipal-cadastro-titulo">Tipos de Eventos</h1>
+                <Titulo titulo = {this.state.tituloPagina}/>
                 <div className="container" id="conteudoPrincipal-lista">
                   <table id="tabela-lista">
                     <thead>
@@ -98,9 +97,11 @@ class TiposEventos extends Component{
                 </div>
         
                 <div className="container" id="conteudoPrincipal-cadastro">
-                  <h2 className="conteudoPrincipal-cadastro-titulo">
+                  {/* <h2 className="conteudoPrincipal-cadastro-titulo">
                     Cadastrar Tipo de Evento
-                  </h2>
+                  </h2> */}
+                  
+                  <Titulo titulo="Cadastrar Tipo de Evento" />
                   <form onSubmit = {this.cadastraTipoEvento}>
                     <div className="container">
                               {/* Atualiza o estado do nome de um objeto */}
