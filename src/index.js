@@ -8,6 +8,7 @@ import TiposEventos from './pages/TiposEventos/TiposEventos';
 import NaoEncontrada from './pages/NaoEncontrada/NaoEncontrada';
 import Login from './pages/Login/login';
 import {usuarioAutenticado} from './services/autenticacao'
+import Cadastro from './pages/Eventos/Cadastro';
 
 //Criando permissão                      Resto das minhas propriedades
 const Permissao = ( {component : Component}, {...rest} ) => (
@@ -29,6 +30,7 @@ const rotas = (
            <Route exact path="/" component={App} /> 
            <Permissao path="/tiposeventos" component={TiposEventos}></Permissao>
            <Route path="/login" component={Login}></Route>
+           <Route path="/Eventos/cadastrar" component={Cadastro}></Route>
            <Route component={NaoEncontrada}/>
            </Switch>
         </div>

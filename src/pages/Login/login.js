@@ -27,7 +27,7 @@ class Login extends Component {
             email : this.state.email,
             senha : this.state.senha
         })
-        .then(data => { if (data.status === 2000) 
+        .then(data => { if (data.status === 200) 
             {
                 console.log(data);
                 //Armazenando as informações do usuário no local storage para ser utilizado futuramente

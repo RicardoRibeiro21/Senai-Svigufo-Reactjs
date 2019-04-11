@@ -3,6 +3,7 @@ import '../../assets/css/flexbox.css';
 import '../../assets/css/reset.css';
 import '../../assets/css/login.css';
 import '../../assets/css/style.css';
+import Rodape from "../../Components/Rodape/Rodape";
 
 import Titulo from '../../Components/Titulo'
 
@@ -41,18 +42,19 @@ class TiposEventos extends Component{
   }
 
   cadastraTipoEvento(event){
-    //Evitando o carregamento do formulário quando cadastro
     event.preventDefault();
-        fetch('http://localhost:5000/api/tiposeventos', 
-          {
-            method : 'POST',
-            body : JSON.stringify({ nome: this.state.nome}),
-            header:{
-            "Content-Type" : "application/json" }            
-          })
-          .then(resposta => console.log(resposta))
-          .then(this.buscarTiposEventos())
-          .catch(erro => console.log(erro))
+    
+    fetch('http://localhost:5000/api/tiposeventos',
+        {
+          method: 'POST',
+          body : JSON.stringify({ nome : this.state.nome }),
+          headers: {
+            "Content-Type" : "application/json"
+          }
+        })
+        .then(resposta => console.log(resposta))
+        .then(this.buscarTiposEventos())
+        .catch(erro => console.log(erro))
   }
   //renderizando o que queremos dentro da pagina
     render(){
@@ -83,11 +85,11 @@ class TiposEventos extends Component{
         
                     <tbody>
                       {
-                        this.state.lista.map(function(tiposeventos){
+                        this.state.lista.map(function(tipoevento){
                           return (
-                            <tr key={tiposeventos}>
-                              <td>{tiposeventos.id}</td>
-                              <td>{tiposeventos.nome}</td>
+                            <tr key={tipoevento.id}>
+                              <td>{tipoevento.id}</td>
+                              <td>{tipoevento.nome}</td>
                             </tr>
                           );
                         })                      
@@ -114,15 +116,9 @@ class TiposEventos extends Component{
                 </div>
               </section>
             </main>
+              <Rodape />
+              </div>
         
-            <footer className="rodapePrincipal">
-              <section className="rodapePrincipal-patrocinadores">
-                <div className="container">
-                  <p>Escola SENAI de Informática - 2019</p>
-                </div>
-              </section>
-            </footer>
-          </div>
         );
     }
 } 
